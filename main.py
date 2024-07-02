@@ -2,8 +2,8 @@ from ultralytics import YOLO
 import cv2
 
 import util
-from sort.sort import *
-from util import get_car, read_license_plate, write_csv
+from /content/numberplate_recognition/sort.sort import *
+from /content/numberplate_recognition/util import get_car, read_license_plate, write_csv
 
 
 results = {}
