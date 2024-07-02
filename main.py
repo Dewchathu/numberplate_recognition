@@ -1,8 +1,11 @@
 from ultralytics import YOLO
 import cv2
 
+import sys
+sys.path.append('/content/numberplate_recognition')
+
 import util
-from sort import *
+from sort.sort import *
 from util import get_car, read_license_plate, write_csv
 
 
