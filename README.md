@@ -1,24 +1,42 @@
-# automatic-number-plate-recognition-python-yolov8
+# Automatic-Number-Plate-Recognition--ANPR-
+Automatic Number Plate Recognition (ANPR) Using YOLOv8 and easyOCR
 
-<p align="center">
-<a href="https://www.youtube.com/watch?v=fyJB1t0o0ms">
-    <img width="600" src="https://utils-computervisiondeveloper.s3.amazonaws.com/thumbnails/with_play_button/anpr_yolo2.jpg" alt="Watch the video">
-    </br>Watch on YouTube: Automatic number plate recognition with Python, Yolov8 and EasyOCR !
-</a>
-</p>
+![image](https://github.com/AarohiSingla/Automatic-Number-Plate-Recognition--ANPR-/assets/60029146/f9e79b40-b887-4804-85c3-380dbda7a2a7)
 
-## data
+YOutube Video link: https://www.youtube.com/watch?v=1qVxaK1V074
 
-The video I used in this tutorial can be downloaded [here](https://www.pexels.com/video/traffic-flow-in-the-highway-2103099/).
 
-## models
 
-A Yolov8 pretrained model was used to detect vehicles.
+!pip install ultralytics==8.0.0
 
-A licensed plate detector was used to detect license plates. The model was trained with Yolov8 using [this dataset](https://universe.roboflow.com/roboflow-universe-projects/license-plate-recognition-rxg4e/dataset/4) and following this [step by step tutorial on how to train an object detector with Yolov8 on your custom data](https://github.com/computervisioneng/train-yolov8-custom-dataset-step-by-step-guide). 
+!pip install easyocr
 
-The trained model is available in my [Patreon](https://www.patreon.com/ComputerVisionEngineer).
+!git clone https://github.com/AarohiSingla/Automatic-Number-Plate-Recognition--ANPR-.git
 
-## dependencies
+cd Automatic-Number-Plate-Recognition--ANPR--main
 
-The sort module needs to be downloaded from [this repository](https://github.com/abewley/sort) as mentioned in the [video](https://youtu.be/fyJB1t0o0ms?t=1120).
+
+#### To train your model on License plate detection:
+
+from ultralytics import YOLO
+
+###### Load a model
+model = YOLO('yolov8n.pt')  # load a pretrained model (recommended for training)
+
+###### Train the model
+results = model.train(data='data.yaml', epochs=200, imgsz=640) 
+
+
+#### Test the yolov8 model:
+
+###### Load a pretrained YOLOv8n model
+model = YOLO('ultralytics/runs/detect/train_model/weights/best.pt')
+
+###### Run inference on video
+model.predict('test_vid.mp4', save=True, imgsz=320, conf=0.2)
+
+
+
+#### To perform Detection and Recognition (YOLOv8 + easyOCR) run the below command: 
+
+!python predict_modified.py model='ultralytics/runs/detect/train_model/weights/best.pt' source='test_vid.mp4' 
